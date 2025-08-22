@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Services\Watcher\RecentActionGuard;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -12,6 +13,9 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         //
+        $this->app->singleton(RecentActionGuard::class, function() {
+            return new RecentActionGurad(8);
+        });
     }
 
     /**
